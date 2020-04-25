@@ -365,9 +365,9 @@ void Puzzle::read() const
 		while (!ifile.eof())
 		{
 			cout << "------------------------------" << endl;
-			string name;
-			getline(ifile, name);
-			cout << name << endl;
+			string line;
+			getline(ifile, line);
+			cout << line << endl;
 		}
 	}
 	else
