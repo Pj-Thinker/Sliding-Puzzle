@@ -347,7 +347,8 @@ void Puzzle::write()
 		cout << "Please, insert your name :" << endl;
 		string name;
 		getline(cin, name);
-		ofile << name << " score is : " << attempts() << endl;
+		ofile << name << " score in " << this->ROWS << "X" << this-> ROWS
+			<< " is : " << attempts() << endl;
 
 	}
 	else
