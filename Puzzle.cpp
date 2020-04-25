@@ -18,7 +18,7 @@ Puzzle::Puzzle()
 	while (input)
 	{
 		char ch = _getch();
-		ch -= '0';
+		ch -= '0';    // converting char to int
 		switch (ch)
 		{
 		case 1:
@@ -89,6 +89,7 @@ void Puzzle::print() const
 		}
 		cout << endl;
 	}
+	// Setting color and inserting number of moves below the puzzle 
 	SetConsoleTextAttribute(currentConsole, WHITE);
 	printXY("------------------------------", 0, ROWS);
 	printXY("Moves: ", 0, ROWS+1);
@@ -127,7 +128,7 @@ bool Puzzle::slide()
 {
 	int zeroRow{ 0 };
 	int zeroCol{ 0 };
-
+	// finding the position of zero or * tile
 	for (int r = 0; r < ROWS; r++) {
 		for (int c = 0; c < COLS; c++) {
 			if (puzzle[r][c] == 0) {
@@ -198,6 +199,7 @@ bool Puzzle::slide()
 
 bool Puzzle::slide(int _direction)
 {
+	// This gets direction as integer and is used for shuffling the tiles
 	int zeroRow{ 0 };
 	int zeroCol{ 0 };
 
@@ -210,7 +212,7 @@ bool Puzzle::slide(int _direction)
 			}
 		}
 	}
-
+	
 	switch (_direction)
 	{
 	case 1:
@@ -262,7 +264,7 @@ void Puzzle::shuffle()
 
 	while (counter <= 10000) {
 		direction = rand() % 4 + 1;
-
+		// If slide in the direction is valid counter goes up
 		if (slide(direction)) {
 			counter++;
 		}
@@ -294,16 +296,16 @@ void Puzzle::updateScreen(int r, int c) const
 {
 	// Set color
 	if (checkTileLocation(r, c) == 1) {
-		SetConsoleTextAttribute(currentConsole, GREEN);
+		SetConsoleTextAttribute(currentConsole, GREEN); // the tile is in correct location
 	}
 	else if (checkTileLocation(r, c) == -1)
 	{
-		SetConsoleTextAttribute(currentConsole, RED);
+		SetConsoleTextAttribute(currentConsole, RED);  // the tile is not in the correct location
 	}
 
 	// Print with the selected color
 	if (puzzle[r][c] != 0) {
-		printXY(puzzle[r][c], c*tileWidth, r, tileWidth);
+		printXY(puzzle[r][c], c*tileWidth, r, tileWidth);  // the specific movement (change) in the array will be printed
 	}
 	else
 	{
